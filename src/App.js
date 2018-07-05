@@ -1,30 +1,40 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ItemList from './ItemList'
+
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      items: {}
+      data: []
     };
   }
 
   componentDidMount() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://github.com/ElForastero/react-challenge-sort-and-search/blob/master/public/js/data.json', true);
+    xhr.open('GET', 'https://jqestate.ru/api/v1/properties/country', true);
+    // xhr.open('GET', './country.json', true);
+    // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    // xhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    // xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    // xhr.setRequestHeader('Access-Control-Allow-Credentials', 'true');
 
     xhr.addEventListener('load', () => {
       if (xhr.status >= 200) {
         var xhrResponseText = xhr.responseText;
-        console.log(xhrResponseText);
-        var items = JSON.parse(xhrResponseText);
+        var data = JSON.parse(xhrResponseText);
+
         this.setState({
-          items: items
+          data: data.items
         });
+        console.log(data);
+        console.log(data.items);
       }
     })
+    
 
     xhr.onerror = () => {
       console.log('error1');
@@ -33,16 +43,17 @@ class App extends Component {
     xhr.send();
   }
 
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">React app for rendering objects</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="App-block">
+          <ItemList data={this.state.data} />
+        </div>
       </div>
     );
   }

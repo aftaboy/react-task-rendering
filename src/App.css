@@ -26,3 +26,22 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.App-block {
+  width: 50%;
+  margin: auto;
+}
+
+.blockCard {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #000;
+  margin: 5px 0; 
+}
+
+.blockElem {
+  margin: 0 10px;
+  width: 33%;
+}
