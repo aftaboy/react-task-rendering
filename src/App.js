@@ -31,7 +31,6 @@ class App extends Component {
           data: data.items
         });
         console.log(data);
-        console.log(data.items);
       }
     })
     
