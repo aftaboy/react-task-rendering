@@ -5,20 +5,21 @@ import ItemList from './ItemList'
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      data: []
+      data: [],
     };
   }
 
   componentDidMount() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://jqestate.ru/api/v1/properties/country', true);
-    // xhr.open('GET', './country.json', true);
+    // xhr.open('GET', 'country.json', true);
     // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     // xhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    // xhr.setRequestHeader('Content-Type', 'application/json');
     // xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     // xhr.setRequestHeader('Access-Control-Allow-Credentials', 'true');
 
@@ -28,11 +29,14 @@ class App extends Component {
         var data = JSON.parse(xhrResponseText);
 
         this.setState({
-          data: data.items
+          data: data.items,
+          renderedData: data.items.slice(0, 3),
+          total: data.items.length
         });
-        console.log(data);
+
+        console.log(this.state.renderedData);
       }
-    })
+    })    
     
 
     xhr.onerror = () => {
@@ -43,8 +47,11 @@ class App extends Component {
   }
 
 
+
   render() {
+    
     return (
+
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -53,8 +60,11 @@ class App extends Component {
         <div className="App-block">
           <ItemList data={this.state.data} />
         </div>
+
+
+
       </div>
-    );
+    );    
   }
 }
 

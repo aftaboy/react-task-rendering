@@ -37,15 +37,18 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #000;
-  margin: 5px 0; 
+  border: 1px solid rgb(184, 184, 184);
+  border-radius: 10px;
+  margin: 5px 0;
 }
 
 .blockElem {
   margin: 0 10px;
   width: 33%;
+  max-height: 130px;
 }
 
 .image {
-  margin: 5px 10px;
+  margin: 10px;
+  border-radius: 3px;
 }
