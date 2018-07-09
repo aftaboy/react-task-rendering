@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 export default class ItemData extends Component {
 
-    
-
     render() {
+
         var estateImageId;
         const estateImageIdCheck = this.props.data.images[0];
+
 
         if (estateImageIdCheck !== undefined) {
             estateImageId = this.props.data.images[0].id;
@@ -15,7 +15,6 @@ export default class ItemData extends Component {
         }
 
 
-        // const estateImageId = this.props.data.images[0].id;
         const estateImage = 'https://images.jqestate.ru/'+estateImageId+'-jqestate-1024';
 
         return (

@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ItemList from './ItemList'
+import Pagination from './pagination';
+// import ItemList from './ItemList';
+import ItemData from './ItemData';
 
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       data: [],
+      renderedData: [],
+      page: 1
     };
+    this.handlePageChange = this.handlePageChange.bind(this);
+  }
+
+  handlePageChange(page) {
+    const renderedData = this.state.data.slice((page - 1) * 3, (page - 1) * 3 + 3);
+    this.setState({ page, renderedData });
   }
 
   componentDidMount() {
@@ -29,12 +39,11 @@ class App extends Component {
         var data = JSON.parse(xhrResponseText);
 
         this.setState({
-          data: data.items,
+          data: data.items.slice(0, 3),
           renderedData: data.items.slice(0, 3),
           total: data.items.length
         });
-
-        console.log(this.state.renderedData);
+        // console.log(data);
       }
     })    
     
@@ -49,18 +58,41 @@ class App extends Component {
 
 
   render() {
+
+    // const itemListJS = <ItemList data={this.state.data} />;
+
+    const { page, total, renderedData } = this.state;
+
+    const pagItemData = renderedData.map(items => <ItemData data={items} key={items.id} />);
+    console.log(pagItemData);
+
+
+    // const itemData = this.props.data.map((items) => <ItemData data={items} key={items.id} />);
+
+    // console.log(renderedData);
+    // console.log(page);    
     
     return (
 
       <div className="App">
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React app for rendering objects</h1>
         </header>
+
         <div className="App-block">
-          <ItemList data={this.state.data} />
+          {/* {itemListJS} */}
+          {pagItemData}
         </div>
 
+
+        <Pagination
+          margin={3}
+          page={page}
+          count={Math.ceil(total / 3)}
+          onPageChange={this.handlePageChange}
+        />
 
 
       </div>
