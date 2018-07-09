@@ -18,11 +18,6 @@ class App extends Component {
     this.handlePageChange = this.handlePageChange.bind(this);
   }
 
-  handlePageChange(page) {
-    const renderedData = this.state.data.slice((page - 1) * 3, (page - 1) * 3 + 3);
-    this.setState({ page, renderedData });
-  }
-
   componentDidMount() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://jqestate.ru/api/v1/properties/country', true);
@@ -39,14 +34,13 @@ class App extends Component {
         var data = JSON.parse(xhrResponseText);
 
         this.setState({
-          data: data.items.slice(0, 3),
-          renderedData: data.items.slice(0, 3),
+          data: data.items,
+          renderedData: data.items.slice(0, 5),
           total: data.items.length
         });
         // console.log(data);
       }
     })    
-    
 
     xhr.onerror = () => {
       console.log('error1');
@@ -55,21 +49,17 @@ class App extends Component {
     xhr.send();
   }
 
-
+  handlePageChange(page) {
+    const renderedData = this.state.data.slice((page - 1) * 5, (page - 1) * 5 + 5);
+    this.setState({ page, renderedData });
+  }
 
   render() {
 
-    // const itemListJS = <ItemList data={this.state.data} />;
-
     const { page, total, renderedData } = this.state;
 
-    const pagItemData = renderedData.map(items => <ItemData data={items} key={items.id} />);
-    console.log(pagItemData);
-
-
-    // const itemData = this.props.data.map((items) => <ItemData data={items} key={items.id} />);
-
-    // console.log(renderedData);
+    const pagItemData = renderedData.map(item => <ItemData data={item} key={item.id} />);
+    // console.log(pagItemData);
     // console.log(page);    
     
     return (
@@ -82,7 +72,6 @@ class App extends Component {
         </header>
 
         <div className="App-block">
-          {/* {itemListJS} */}
           {pagItemData}
         </div>
 
@@ -90,7 +79,7 @@ class App extends Component {
         <Pagination
           margin={3}
           page={page}
-          count={Math.ceil(total / 3)}
+          count={Math.ceil(total / 5)}
           onPageChange={this.handlePageChange}
         />
 
