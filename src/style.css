@@ -1,50 +1,119 @@
 #pagination-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+#pagination {
+  display: flex;
+  color: #505050;
+}
+#pagination-list {
+  display: flex;
+  list-style: none;
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+.pagination-button {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #777;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.pagination-list-item {
+  margin-right: 10px;
+}
+.pagination-list-item.active {
+  background: #505050;
+  color: white;
+}
+.pagination-go-first {
+  margin-right: 40px;
+  position: relative;
+  margin-left: 10px;
+}
+.pagination-go-first:before {
+  position: absolute;
+  content: '...';
+  right: -33px;
+}
+.pagination-go-last {
+  margin-left: 40px;
+  position: relative;
+  margin-right: 10px;
+}
+.pagination-go-last:before {
+  position: absolute;
+  content: '...';
+  left: -33px;
+}
+
+.loader {
+  font-size: 90px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 72px auto;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load6 1.7s infinite ease;
+  animation: load6 1.7s infinite ease;
+}
+@-webkit-keyframes load6 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    box-shadow: 0 -0.83em 0 -0.4em #000000, 0 -0.83em 0 -0.42em #000000, 0 -0.83em 0 -0.44em #000000, 0 -0.83em 0 -0.46em #000000, 0 -0.83em 0 -0.477em #000000;
   }
-  #pagination {
-    display: flex;
-    color: #505050;
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em #000000, 0 -0.83em 0 -0.42em #000000, 0 -0.83em 0 -0.44em #000000, 0 -0.83em 0 -0.46em #000000, 0 -0.83em 0 -0.477em #000000;
   }
-  #pagination-list {
-    display: flex;
-    list-style: none;
-    margin: 0 0 0 10px;
-    padding: 0;
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em #000000, -0.087em -0.825em 0 -0.42em #000000, -0.173em -0.812em 0 -0.44em #000000, -0.256em -0.789em 0 -0.46em #000000, -0.297em -0.775em 0 -0.477em #000000;
   }
-  .pagination-button {
-    display: flex;
-    height: 50px;
-    width: 50px;
-    border: 1px solid #777;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em #000000, -0.338em -0.758em 0 -0.42em #000000, -0.555em -0.617em 0 -0.44em #000000, -0.671em -0.488em 0 -0.46em #000000, -0.749em -0.34em 0 -0.477em #000000;
   }
-  .pagination-list-item {
-    margin-right: 10px;
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em #000000, -0.377em -0.74em 0 -0.42em #000000, -0.645em -0.522em 0 -0.44em #000000, -0.775em -0.297em 0 -0.46em #000000, -0.82em -0.09em 0 -0.477em #000000;
   }
-  .pagination-list-item.active {
-    background: #505050;
-    color: white;
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    box-shadow: 0 -0.83em 0 -0.4em #000000, 0 -0.83em 0 -0.42em #000000, 0 -0.83em 0 -0.44em #000000, 0 -0.83em 0 -0.46em #000000, 0 -0.83em 0 -0.477em #000000;
   }
-  .pagination-go-first {
-    margin-right: 40px;
-    position: relative;
-    margin-left: 10px;
+}
+@keyframes load6 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    box-shadow: 0 -0.83em 0 -0.4em #000000, 0 -0.83em 0 -0.42em #000000, 0 -0.83em 0 -0.44em #000000, 0 -0.83em 0 -0.46em #000000, 0 -0.83em 0 -0.477em #000000;
   }
-  .pagination-go-first:before {
-    position: absolute;
-    content: '...';
-    right: -33px;
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em #000000, 0 -0.83em 0 -0.42em #000000, 0 -0.83em 0 -0.44em #000000, 0 -0.83em 0 -0.46em #000000, 0 -0.83em 0 -0.477em #000000;
   }
-  .pagination-go-last {
-    margin-left: 40px;
-    position: relative;
-    margin-right: 10px;
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em #000000, -0.087em -0.825em 0 -0.42em #000000, -0.173em -0.812em 0 -0.44em #000000, -0.256em -0.789em 0 -0.46em #000000, -0.297em -0.775em 0 -0.477em #000000;
   }
-  .pagination-go-last:before {
-    position: absolute;
-    content: '...';
-    left: -33px;
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em #000000, -0.338em -0.758em 0 -0.42em #000000, -0.555em -0.617em 0 -0.44em #000000, -0.671em -0.488em 0 -0.46em #000000, -0.749em -0.34em 0 -0.477em #000000;
   }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em #000000, -0.377em -0.74em 0 -0.42em #000000, -0.645em -0.522em 0 -0.44em #000000, -0.775em -0.297em 0 -0.46em #000000, -0.82em -0.09em 0 -0.477em #000000;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    box-shadow: 0 -0.83em 0 -0.4em #000000, 0 -0.83em 0 -0.42em #000000, 0 -0.83em 0 -0.44em #000000, 0 -0.83em 0 -0.46em #000000, 0 -0.83em 0 -0.477em #000000;
+  }
+}

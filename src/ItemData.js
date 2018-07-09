@@ -14,8 +14,11 @@ export default class ItemData extends Component {
             estateImageId = 0;
         }
 
+        let estateImage = 'https://images.jqestate.ru/'+estateImageId+'-jqestate-1024';
 
-        const estateImage = 'https://images.jqestate.ru/'+estateImageId+'-jqestate-1024';
+        if (estateImageId === 0) {
+            estateImage = 'https://espressokamira.com/images/no-image.gif';
+        }
 
         return (
             <div className="blockCard">

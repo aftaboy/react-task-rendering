@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Pagination from './pagination';
-// import ItemList from './ItemList';
 import ItemData from './ItemData';
 
 
@@ -35,32 +34,28 @@ class App extends Component {
 
         this.setState({
           data: data.items,
-          renderedData: data.items.slice(0, 5),
+          renderedData: data.items.slice(0, 4),
           total: data.items.length
         });
-        // console.log(data);
       }
     })    
 
     xhr.onerror = () => {
-      console.log('error1');
+      alert('No objects');
     }
 
     xhr.send();
   }
 
   handlePageChange(page) {
-    const renderedData = this.state.data.slice((page - 1) * 5, (page - 1) * 5 + 5);
+    const renderedData = this.state.data.slice((page - 1) * 4, (page - 1) * 4 + 4);
     this.setState({ page, renderedData });
   }
 
   render() {
-
     const { page, total, renderedData } = this.state;
 
     const pagItemData = renderedData.map(item => <ItemData data={item} key={item.id} />);
-    // console.log(pagItemData);
-    // console.log(page);    
     
     return (
 
@@ -75,14 +70,12 @@ class App extends Component {
           {pagItemData}
         </div>
 
-
         <Pagination
           margin={3}
           page={page}
-          count={Math.ceil(total / 5)}
+          count={Math.ceil(total / 4)}
           onPageChange={this.handlePageChange}
         />
-
 
       </div>
     );    
