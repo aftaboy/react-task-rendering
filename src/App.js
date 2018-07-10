@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       data: [],
       renderedData: [],
+      dataPerPage: 4,
       page: 1
     };
     this.handlePageChange = this.handlePageChange.bind(this);
@@ -19,13 +20,11 @@ class App extends Component {
 
   componentDidMount() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://jqestate.ru/api/v1/properties/country', true);
-    // xhr.open('GET', 'country.json', true);
+    xhr.open('GET', './country.json', true);
+    // xhr.open('GET', 'https://jqestate.ru/api/v1/properties/country', true);
     // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     // xhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-    // xhr.setRequestHeader('Content-Type', 'application/json');
     // xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    // xhr.setRequestHeader('Access-Control-Allow-Credentials', 'true');
 
     xhr.addEventListener('load', () => {
       if (xhr.status >= 200) {
@@ -34,7 +33,7 @@ class App extends Component {
 
         this.setState({
           data: data.items,
-          renderedData: data.items.slice(0, 4),
+          renderedData: data.items.slice(0, this.state.dataPerPage),
           total: data.items.length
         });
       }
@@ -48,12 +47,12 @@ class App extends Component {
   }
 
   handlePageChange(page) {
-    const renderedData = this.state.data.slice((page - 1) * 4, (page - 1) * 4 + 4);
+    const renderedData = this.state.data.slice((page - 1) * this.state.dataPerPage, (page - 1) * this.state.dataPerPage + this.state.dataPerPage);
     this.setState({ page, renderedData });
   }
 
   render() {
-    const { page, total, renderedData } = this.state;
+    const { page, total, renderedData, dataPerPage } = this.state;
 
     const pagItemData = renderedData.map(item => <ItemData data={item} key={item.id} />);
     
@@ -73,7 +72,7 @@ class App extends Component {
         <Pagination
           margin={3}
           page={page}
-          count={Math.ceil(total / 4)}
+          count={Math.ceil(total / dataPerPage)}
           onPageChange={this.handlePageChange}
         />
 
