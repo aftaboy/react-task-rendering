@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', './country.json', true);
+    xhr.open('GET', './data.json', true);
     // xhr.open('GET', 'https://jqestate.ru/api/v1/properties/country', true);
     // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     // xhr.setRequestHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
